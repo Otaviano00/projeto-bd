@@ -1,6 +1,6 @@
 # 1. Introdução
 
-O RPG (_Role-Playing Game_) é um jogo de interpretação colaborativo onde os participantes criam personagens e constroem narrativas de forma livre, sem roteiros ou gráficos predefinidos. O rumo da história é dinâmico, sendo definido pelas decisões dos jogadores em tempo real.
+O RPG (_Role-Playing Game_) é um jogo de interpretação colaborativo no qual os participantes criam personagens e constroem narrativas de forma livre, sem roteiros ou gráficos predefinidos. O rumo da história é dinâmico, sendo definido pelas decisões dos jogadores em tempo real.
 
 Para que essa dinâmica funcione, destaca-se a figura do Mestre, que atua como o motor do jogo: ele é responsável por estruturar o universo, garantir a consistência das regras e interpretar todos os elementos não controlados diretamente pelos jogadores, como cenários, monstros e NPCs (_Non-Player Characters_).
 
@@ -11,6 +11,8 @@ O gerenciamento de uma narrativa de RPG gera um volume expressivo de dados inter
 # 3. Estrutura e Principais Entidades
 
 A arquitetura do banco de dados foi concebida para suportar diferentes sistemas de regras e características variadas de fichas, estruturando-se sobre as seguintes entidades e conceitos fundamentais:
+
+### 3.1 Descrição das entidades
 
 - **Usuários:** Participantes cadastrados no sistema. Um usuário pode atuar flexivelmente como Mestre em uma campanha e como Jogador em outra.
     
@@ -31,3 +33,14 @@ A arquitetura do banco de dados foi concebida para suportar diferentes sistemas 
 - **Cenários:** Os locais, ambientes e mapas geográficos onde as campanhas e sessões ocorrem.
     
 - **Anotações:** Registros particulares, diários de bordo e anotações de enredo dependentes de cada usuário no sistema.
+
+- **Templates de fichas:** Modelos de ficha pertencentes a cada sistema de regras. Eles são utilizados posteriormente na criação e preenchimento das fichas concretas de personagens, NPCs, monstros e itens.
+
+# 4. Ferramentas utilizadas
+
+- Draw.io: Utilizado na criação do DER/MER
+- MySQL Workbench: Utilizado na criação do MR e do script do banco
+
+# 5. Uso de Inteligência Artificial
+
+Ferramentas de inteligência artificial foram empregadas na revisão dos artefatos gerados e na estruturação da documentação.
