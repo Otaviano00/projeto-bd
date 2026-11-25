@@ -1,0 +1,174 @@
+erDiagram
+    USUARIO {
+        int id_usuario PK
+        string nome
+        string email
+        string hash_senha
+        date data_nascimento
+        datetime created_at
+    }
+
+    SISTEMA {
+        int id_sistema PK
+        string nome
+        string editora
+        string edicao
+        string livro_regras
+    }
+
+    CAMPANHA {
+        int id_campanha PK
+        int id_mestre FK
+        int id_sistema FK
+        string nome
+        text descricao
+        text historia
+        enum status
+        datetime created_at
+        datetime finished_at
+    }
+
+    PERSONAGEM {
+        int id_personagem PK
+        int id_usuario FK
+        string nome
+        enum status
+        blob imagem
+        datetime created_at
+    }
+
+    SESSAO {
+        int id_campanha PK, FK
+        int numero_sessao PK
+        datetime data_hora
+        text resumo_narrativo
+        datetime created_at
+        datetime finished_at
+    }
+
+    ANOTACAO {
+        int id_usuario PK, FK
+        int numero_anotacao PK
+        string titulo
+        text conteudo
+        enum visibilidade
+        datetime created_at
+        datetime updated_at
+    }
+
+    NPC {
+        int id_npc PK
+        string nome
+        text descricao
+        text historia
+        blob imagem
+    }
+
+    MONSTRO {
+        int id_monstro PK
+        string nome
+        text descricao
+        text historia
+        blob imagem
+    }
+
+    CENARIO {
+        int id_cenario PK
+        string nome
+        text descricao
+        blob imagem
+    }
+
+    ITEM {
+        int id_item PK
+        string nome
+        text descricao
+        text historia
+        blob imagem
+    }
+
+    FICHAS_TEMPLATE {
+        int id_sistema PK, FK
+        int numero_ficha PK
+        blob ficha_arquivo
+        enum tipo
+    }
+
+    CAMPANHA_NPC {
+        int id_campanha PK, FK
+        int id_npc PK, FK
+        string status
+    }
+
+    CAMPANHA_CENARIO {
+        int id_campanha PK, FK
+        int id_cenario PK, FK
+    }
+
+    PERSONAGEM_SESSAO {
+        int id_personagem PK, FK
+        int id_campanha PK, FK
+        int numero_sessao PK, FK
+    }
+
+    PERSONAGEM_ITEM {
+        int id_personagem PK, FK
+        int id_item PK, FK
+        int quantidade
+    }
+
+    SISTEMA_PERSONAGEM {
+        int id_sistema PK, FK
+        int id_personagem PK, FK
+        blob ficha_arquivo
+    }
+
+    SISTEMA_NPC {
+        int id_sistema PK, FK
+        int id_npc PK, FK
+        blob ficha_arquivo
+    }
+
+    SISTEMA_MONSTRO {
+        int id_sistema PK, FK
+        int id_monstro PK, FK
+        blob ficha_arquivo
+    }
+
+    SISTEMA_ITEM {
+        int id_sistema PK, FK
+        int id_item PK, FK
+        blob ficha_arquivo
+    }
+
+    USUARIO ||--o{ ANOTACAO : "cria"
+    USUARIO ||--o{ CAMPANHA : "mestra"
+    USUARIO ||--o{ PERSONAGEM : "possui"
+
+    SISTEMA ||--o{ CAMPANHA : "rege"
+    SISTEMA ||--o{ FICHAS_TEMPLATE : "possui"
+    CAMPANHA ||--o{ SESSAO : "identifica"
+
+    CAMPANHA ||--o{ CAMPANHA_NPC : "inclui"
+    NPC ||--o{ CAMPANHA_NPC : "participa"
+
+    CAMPANHA ||--o{ CAMPANHA_CENARIO : "inclui"
+    CENARIO ||--o{ CAMPANHA_CENARIO : "aparece"
+
+    PERSONAGEM ||--o{ PERSONAGEM_SESSAO : "participa"
+    SESSAO ||--o{ PERSONAGEM_SESSAO : "reune"
+
+    PERSONAGEM ||--o{ PERSONAGEM_ITEM : "carrega"
+    ITEM ||--o{ PERSONAGEM_ITEM : "pode_pertencer"
+
+    SISTEMA ||--o{ SISTEMA_PERSONAGEM : "define"
+    PERSONAGEM ||--o{ SISTEMA_PERSONAGEM : "possui_ficha"
+
+    SISTEMA ||--o{ SISTEMA_NPC : "define"
+    NPC ||--o{ SISTEMA_NPC : "possui_ficha"
+
+    SISTEMA ||--o{ SISTEMA_MONSTRO : "define"
+    MONSTRO ||--o{ SISTEMA_MONSTRO : "possui_ficha"
+
+    SISTEMA ||--o{ SISTEMA_ITEM : "define"
+    ITEM ||--o{ SISTEMA_ITEM : "possui_ficha"
