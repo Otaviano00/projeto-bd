@@ -1,5 +1,6 @@
 package com.projectBD.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +38,7 @@ public class Usuario {
     @Column(name = "email", nullable = false, length = 255)
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "hash_senha", nullable = false, length = 255)
     private String hashSenha;
 
