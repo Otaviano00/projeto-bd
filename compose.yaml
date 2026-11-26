@@ -1,0 +1,28 @@
+# Subido automaticamente pelo Spring Boot (spring-boot-docker-compose) ao iniciar a aplicacao.
+# Manualmente: docker compose up -d
+
+services:
+  mysql:
+    image: mysql:${MYSQL_VERSION:-8.4}
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_0900_ai_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Defina MYSQL_ROOT_PASSWORD no .env}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Defina MYSQL_DATABASE no .env}
+      MYSQL_USER: ${MYSQL_USER:?Defina MYSQL_USER no .env}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Defina MYSQL_PASSWORD no .env}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docs/db/MR/scripts/MR_RPG.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./docs/db/MR/scripts/01_triggers.sql:/docker-entrypoint-initdb.d/02_triggers.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+volumes:
+  mysql_data:

@@ -1,3 +1,9 @@
+Participantes
+- Kauã Otaviano Teixeira - 251023550
+- Caio de Castro Araujo - 251019323
+- Daniel de Oliveira Morais - 242042396
+- João Guilherme Cavalcanti Machado - 251023110
+
 # 1. Introdução
 
 O RPG (_Role-Playing Game_) é um jogo de interpretação colaborativo no qual os participantes criam personagens e constroem narrativas de forma livre, sem roteiros ou gráficos predefinidos. O rumo da história é dinâmico, sendo definido pelas decisões dos jogadores em tempo real.
